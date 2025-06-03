@@ -1,25 +1,20 @@
 // Configurações do Quiz
 const questions = [
     {
-        question: "Quantas xícaras de café você toma por dia?",
-        options: ["1-2 (Normal)", "3-4 (Viciado)", "Nem conto mais (SOS)"],
-        points: [5, 10, 15],
+        question: "Qual seu maior desafio para ser produtivo?",
+        options: [
+            "Foco (me distraio fácil)",
+            "Energia (sempre cansado)",
+            "Planejamento (não sei priorizar)"
+        ],
+        points: [10, 15, 20],
         feedback: [
-            "Você está no controle!",
-            "Cuidado com a dependência química!",
-            "Seu cérebro precisa de um UPGRADE urgente!"
+            "🛡️ <strong>Foco</strong> é treinável! Experimente a Técnica Pomodoro 2.0.",
+            "⚡ <strong>Energia</strong> começa na alimentação e sono. Você já fez um detox digital?",
+            "📅 <strong>Planejamento</strong> é o alicerce. Priorize MITs (Most Important Tasks)."
         ]
     },
-    {
-        question: "Quantas horas você FOCA por dia (sem distrações)?",
-        options: ["Menos de 2h", "2-4h", "4h+ (Máquina)"],
-        points: [5, 10, 20],
-        feedback: [
-            "Seu potencial está sendo subutilizado!",
-            "Bom, mas pode melhorar!",
-            "NÍVEL PRO ATIVADO!"
-        ]
-    }
+    // Adicione as outras perguntas aqui...
 ];
 
 // Variáveis Globais
