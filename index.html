@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Upgrade Cerebral</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>🚀 <span id="quiz-title">Isso Não É Café... É Seu UPGRADE Cerebral!</span></h1>
+        
+        <!-- Barra de Progresso -->
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+            <span id="progress-text">0% Completo</span>
+        </div>
 
+        <!-- Área das Perguntas -->
+        <div id="question-container">
+            <h2 id="question"></h2>
+            <div id="options-container" class="options"></div>
+        </div>
+
+        <!-- Resultado (Após Quiz) -->
+        <div id="result-container" class="hidden">
+            <h2 id="result-title"></h2>
+            <p id="result-text"></p>
+            <img id="badge-image" src="" alt="Badge">
+            <button id="restart-btn">Refazer Quiz</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
