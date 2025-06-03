@@ -3,17 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Upgrade Cerebral</title>
+    <title>Quiz: Qual Seu Perfil de Produtividade?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="quiz-container">
-        <h1>🚀 <span id="quiz-title">Isso Não É Café... É Seu UPGRADE Cerebral!</span></h1>
-        
+        <div class="quiz-header">
+            <h1>🔋 <span>Qual Seu Perfil de Produtividade?</span></h1>
+            <p>Responda e descubra seu plano personalizado!</p>
+        </div>
+
         <!-- Barra de Progresso -->
         <div class="progress-container">
             <div id="progress-bar"></div>
-            <span id="progress-text">0% Completo</span>
+            <span id="progress-text">0%</span>
         </div>
 
         <!-- Área das Perguntas -->
@@ -22,12 +26,12 @@
             <div id="options-container" class="options"></div>
         </div>
 
-        <!-- Resultado (Após Quiz) -->
+        <!-- Resultado Final -->
         <div id="result-container" class="hidden">
             <h2 id="result-title"></h2>
             <p id="result-text"></p>
-            <img id="badge-image" src="" alt="Badge">
-            <button id="restart-btn">Refazer Quiz</button>
+            <div id="badge"></div>
+            <button id="cta-btn">Quero Meu Plano!</button>
         </div>
     </div>
 
