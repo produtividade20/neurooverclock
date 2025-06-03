@@ -3,11 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quiz Produtividade</title>
+  <title>Quiz Produtividade Extrema</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
+      font-family: 'Arial Black', sans-serif;
+      background: linear-gradient(135deg, #000, #1f1f1f);
+      color: #fff;
       margin: 0;
       padding: 0;
       display: flex;
@@ -16,42 +17,70 @@
       height: 100vh;
     }
     .quiz-container {
-      background: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      background: #121212;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 20px #ff0;
       width: 90%;
-      max-width: 500px;
+      max-width: 600px;
+      text-align: center;
     }
     .question {
-      margin-bottom: 15px;
-      font-weight: bold;
-    }
-    .answers {
+      font-size: 1.5em;
       margin-bottom: 20px;
+      color: #00ff00;
     }
-    button {
-      background: #000;
-      color: #fff;
-      padding: 10px 15px;
-      border: none;
-      border-radius: 5px;
+    .answers label {
+      display: block;
+      margin: 10px 0;
+      font-size: 1.1em;
       cursor: pointer;
     }
+    button {
+      background: #ff0;
+      color: #000;
+      padding: 15px 25px;
+      font-size: 1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 0 10px #ff0;
+    }
     button:hover {
+      background: #ffd700;
+    }
+    .progress-bar {
+      width: 100%;
       background: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      height: 20px;
+    }
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #00ff00, #ff0);
+      transition: width 0.5s ease;
     }
   </style>
 </head>
 <body>
 
 <div class="quiz-container">
+  <div class="progress-bar">
+    <div class="progress"></div>
+  </div>
   <div id="quiz">
     <div class="question"></div>
     <div class="answers"></div>
     <button id="next">Próxima</button>
   </div>
 </div>
+
+<audio id="pix-sound" src="https://cdn.pixabay.com/download/audio/2022/08/18/audio_aadac90c16.mp3?filename=money-cash-register-7035.mp3"></audio>
 
 <script>
   const quizData = [
@@ -66,16 +95,24 @@
   const questionEl = document.querySelector('.question');
   const answersEl = document.querySelector('.answers');
   const nextBtn = document.getElementById('next');
+  const progressEl = document.querySelector('.progress');
+  const pixSound = document.getElementById('pix-sound');
 
   let currentQuiz = 0;
 
   function loadQuiz() {
     questionEl.innerText = quizData[currentQuiz];
     answersEl.innerHTML = `
-      <label><input type="radio" name="answer" value="1"> Sim</label><br>
-      <label><input type="radio" name="answer" value="2"> Às vezes</label><br>
+      <label><input type="radio" name="answer" value="1"> Sim</label>
+      <label><input type="radio" name="answer" value="2"> Às vezes</label>
       <label><input type="radio" name="answer" value="3"> Não</label>
     `;
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const progress = ((currentQuiz) / quizData.length) * 100;
+    progressEl.style.width = progress + "%";
   }
 
   loadQuiz();
@@ -87,14 +124,16 @@
       return;
     }
     currentQuiz++;
+    pixSound.play();  // Toca o som de PIX caindo!
     if (currentQuiz < quizData.length) {
       loadQuiz();
     } else {
+      progressEl.style.width = "100%";
       quiz.innerHTML = `
         <h2>Parabéns (ou não)...</h2>
         <p>De acordo com as suas respostas, você está PERDENDO TEMPO, DINHEIRO e QUALIDADE DE VIDA!</p>
         <p>Mas calma… existe uma forma simples de mudar isso AGORA!</p>
-        <button onclick="location.href='https://produtividade20.github.io/neurooverclock/'">Quero mudar de vida AGORA!</button>
+        <button onclick="location.href='https://teu-site.com/oferta'">Quero mudar de vida AGORA!</button>
       `;
     }
   });
