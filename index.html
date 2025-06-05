@@ -1,62 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Funil Gamificado - Pack de Figurinhas Gospel</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f9f9f9;
-      color: #333;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-    }
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      max-width: 500px;
-      text-align: center;
-    }
-    .question {
-      font-size: 1.3em;
-      margin-bottom: 20px;
-    }
-    .btn {
-      display: inline-block;
-      background: #4CAF50;
-      color: white;
-      padding: 12px 20px;
-      margin: 10px 5px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 1em;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background: #45a049;
-    }
-    .hidden {
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funil de Figurinhas Gospel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #e0f7fa, #e8f5e9);
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #00796b;
+        }
+        .question {
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f1f8e9;
+            border-left: 5px solid #00796b;
+            border-radius: 10px;
+        }
+        button {
+            background-color: #00796b;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #004d40;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
-  <div id="step1">
-    <div class="question">
-      Você acredita que o principal propósito do homem na Terra é propagar a Palavra de Cristo?
-    </div>
-    <button class="btn" onclick="nextStep(2)">Sim, com certeza!</button>
-    <button class="btn" onclick="nextStep(2)">Estou buscando entender melhor</button>
-  </div>
+    <h1>Descubra o seu Propósito</h1>
 
-  <div id="step2" class="hidden">
     <div class="question">
-      Você gostaria de ter um meio criativo e inspirador para compartilhar mensagens de f
+        <p>1️⃣ Você acredita que foi chamado para propagar a Palavra de Cristo?</p>
+        <button>Sim</button>
+        <button>Não sei</button>
+    </div>
+
+    <div class="question">
+        <p>2️⃣ O quanto você sente que está cumprindo sua missão espiritual hoje?</p>
+        <button>Muito</button>
+        <button>Mais ou menos</button>
+        <button>Preciso melhorar</button>
+    </div>
+
+    <div class="question">
+        <p>3️⃣ Você gostaria de uma maneira criativa de compartilhar a mensagem de Deus?</p>
+        <button>Sim, claro!</button>
+        <button>Nunca pensei nisso</button>
+    </div>
+
+    <div class="question">
+        <p>4️⃣ Acredita que pequenas ações, como enviar figurinhas com mensagens bíblicas, podem transformar vidas?</p>
+        <button>Sim, com certeza</button>
+        <button>Tenho dúvidas</button>
+    </div>
+
+    <div class="question">
+        <p>5️⃣ Você quer fazer parte de um movimento que espalha amor, esperança e fé através das redes sociais?</p>
+        <button>Sim, quero!</button>
+        <button>Talvez</button>
+    </div>
+</div>
+
+</body>
+</html>
