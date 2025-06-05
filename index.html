@@ -2,188 +2,54 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Funil Gamificado Gospel</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #f0f0f0, #d6d6d6);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      background-image: radial-gradient(circle at 20% 20%, #ffffff 0%, #f0f0f0 60%, #d6d6d6 100%);
-    }
-
-    .container {
-      background: rgba(255, 255, 255, 0.95);
-      padding: 40px 30px;
-      border-radius: 20px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
-      max-width: 450px;
-      width: 100%;
-      text-align: center;
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      position: relative;
-    }
-
-    h1 {
-      color: #2196f3;
-      margin-bottom: 20px;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .progress-container {
-      margin-bottom: 20px;
-    }
-
-    .progress-bar {
-      width: 100%;
-      height: 20px;
-      background-color: #e0e0e0;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .progress-fill {
-      height: 100%;
-      background-color: #4caf50;
-      width: 0%;
-      transition: width 0.4s ease;
-    }
-
-    .level {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      font-weight: bold;
-      color: #444;
-      background-color: #ffffffcc;
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 14px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .question {
-      margin-bottom: 30px;
-      font-size: 20px;
-      font-weight: bold;
-      color: #333;
-      padding: 15px;
-      background-color: #f9f9f9;
-      border-radius: 12px;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    .buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
-
-    button {
-      background-color: #2196f3;
-      color: #fff;
-      border: none;
-      padding: 14px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    button:hover {
-      background-color: #1769aa;
-      transform: scale(1.05);
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desafio do Investidor</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="app-container">
 
-<div class="container" id="quizContainer">
-  <div class="level" id="levelText">Nível: Povo</div>
+    <!-- Tela 1: Boas-vindas -->
+    <section id="tela-1" class="tela ativa">
+      <h1>Bem-vindo ao Desafio do Investidor!</h1>
+      <p>Descubra seu perfil e desbloqueie um presente exclusivo.</p>
+      <button onclick="proximaTela()">Começar</button>
+    </section>
 
-  <h1>Reserve seu lugar no Céu!</h1>
+    <!-- Tela 2: Quiz - Perfil de Investidor -->
+    <section id="tela-2" class="tela">
+      <h2>Qual seu nível de conhecimento em investimentos?</h2>
+      <button onclick="responder(1)">Iniciante</button>
+      <button onclick="responder(2)">Intermediário</button>
+      <button onclick="responder(3)">Avançado</button>
+    </section>
 
-  <div class="progress-container">
-    <div class="progress-bar">
-      <div class="progress-fill" id="progressFill"></div>
-    </div>
+    <!-- Tela 3: Progresso -->
+    <section id="tela-3" class="tela">
+      <h2>Progresso</h2>
+      <div class="barra-progresso">
+        <div class="progresso" id="progresso"></div>
+      </div>
+      <p>Você está quase lá!</p>
+      <button onclick="proximaTela()">Continuar</button>
+    </section>
+
+    <!-- Tela 4: Bônus desbloqueado -->
+    <section id="tela-4" class="tela">
+      <h2>Parabéns!</h2>
+      <p>Você desbloqueou um bônus exclusivo para seu perfil!</p>
+      <button onclick="proximaTela()">Ver Oferta</button>
+    </section>
+
+    <!-- Tela 5: Oferta do infoproduto -->
+    <section id="tela-5" class="tela">
+      <h2>Oferta Especial</h2>
+      <p>Conheça nosso curso completo para alavancar seus investimentos.</p>
+      <button onclick="window.location.href='https://seulink.com/oferta'">Quero Aproveitar</button>
+    </section>
+
   </div>
 
-  <div class="question" id="questionText"></div>
-  <div class="buttons">
-    <button onclick="nextQuestion('Sim')">Sim</button>
-    <button onclick="nextQuestion('Não')">Não</button>
-    <button onclick="nextQuestion('Talvez')">Talvez</button>
-  </div>
-</div>
-
-<!-- 🔊 Áudio de evolução -->
-<audio id="levelUpSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_9b2e87dd2e.mp3" preload="auto"></audio>
-
-<script>
-  const questions = [
-    "VOCÊ ACREDITA QUE FOI CHAMADO PARA PROPAGAR A PALAVRA DE CRISTO?",
-    "O QUANTO VOCÊ SENTE QUE ESTÁ CUMPRINDO SUA MISSÃO ESPIRITUAL HOJE?",
-    "VOCÊ GOSTARIA DE UMA MANEIRA CRIATIVA DE COMPARTILHAR A MENSAGEM DE DEUS?",
-    "ACREDITA QUE PEQUENAS AÇÕES, COMO ENVIAR FIGURINHAS COM MENSAGENS BÍBLICAS, PODEM TRANSFORMAR VIDAS?",
-    "VOCÊ QUER FAZER PARTE DE UM MOVIMENTO QUE ESPALHA AMOR, ESPERANÇA E FÉ ATRAVÉS DAS REDES SOCIAIS?"
-  ];
-
-  const levels = ["Povo", "Crente", "Pastor", "Evangelista", "Profeta"];
-
-  let currentQuestion = 0;
-
-  const questionText = document.getElementById('questionText');
-  const quizContainer = document.getElementById('quizContainer');
-  const progressFill = document.getElementById('progressFill');
-  const levelText = document.getElementById('levelText');
-  const levelUpSound = document.getElementById('levelUpSound');
-
-  function showQuestion(index) {
-    questionText.textContent = questions[index];
-    updateProgress(index);
-  }
-
-  function updateProgress(index) {
-    const progressPercent = ((index) / questions.length) * 100;
-    progressFill.style.width = progressPercent + "%";
-    levelText.textContent = `Nível: ${levels[index] || levels[levels.length - 1]}`;
-  }
-
-  function nextQuestion(response) {
-    console.log(`Resposta: ${response}`);
-    currentQuestion++;
-    levelUpSound.play(); // 🔊 Toca o som de level up
-
-    if (currentQuestion < questions.length) {
-      quizContainer.style.opacity = '0';
-      quizContainer.style.transform = 'translateY(20px)';
-      setTimeout(() => {
-        showQuestion(currentQuestion);
-        quizContainer.style.opacity = '1';
-        quizContainer.style.transform = 'translateY(0)';
-      }, 500);
-    } else {
-      quizContainer.innerHTML = `
-        <h1>Parabéns, Profeta!</h1>
-        <div style="margin-bottom: 20px;">
-          <strong>Você alcançou o nível mais alto do nosso quiz!</strong>
-        </div>
-        <p>Em breve entraremos em contato com novidades incríveis sobre as figurinhas gospel!</p>
-      `;
-    }
-  }
-
-  // Inicializa o quiz
-  showQuestion(currentQuestion);
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
-
