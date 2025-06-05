@@ -25,6 +25,7 @@
       width: 100%;
       text-align: center;
       transition: opacity 0.5s ease, transform 0.5s ease;
+      position: relative;
     }
 
     h1 {
@@ -55,9 +56,16 @@
     }
 
     .level {
-      margin: 10px 0;
+      position: absolute;
+      top: 20px;
+      right: 30px;
       font-weight: bold;
       color: #444;
+      background-color: #ffffffcc;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
     .question {
@@ -97,10 +105,11 @@
 <body>
 
 <div class="container" id="quizContainer">
+  <div class="level" id="levelText">Nível: Povo</div>
+
   <h1>Reserve seu lugar no Céu!</h1>
 
   <div class="progress-container">
-    <div class="level" id="levelText">Nível: Povo</div>
     <div class="progress-bar">
       <div class="progress-fill" id="progressFill"></div>
     </div>
@@ -113,6 +122,9 @@
     <button onclick="nextQuestion('Talvez')">Talvez</button>
   </div>
 </div>
+
+<!-- 🔊 Áudio de evolução -->
+<audio id="levelUpSound" src="https://cdn.pixabay.com/audio/2022/03/15/audio_9b2e87dd2e.mp3" preload="auto"></audio>
 
 <script>
   const questions = [
@@ -131,6 +143,7 @@
   const quizContainer = document.getElementById('quizContainer');
   const progressFill = document.getElementById('progressFill');
   const levelText = document.getElementById('levelText');
+  const levelUpSound = document.getElementById('levelUpSound');
 
   function showQuestion(index) {
     questionText.textContent = questions[index];
@@ -146,6 +159,8 @@
   function nextQuestion(response) {
     console.log(`Resposta: ${response}`);
     currentQuestion++;
+    levelUpSound.play(); // 🔊 Toca o som de level up
+
     if (currentQuestion < questions.length) {
       quizContainer.style.opacity = '0';
       quizContainer.style.transform = 'translateY(20px)';
@@ -171,3 +186,4 @@
 
 </body>
 </html>
+
