@@ -3,141 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Quiz Produtividade Extrema</title>
+  <title>Funil Gamificado - Pack de Figurinhas Gospel</title>
   <style>
     body {
-      font-family: 'Arial Black', sans-serif;
-      background: linear-gradient(135deg, #000, #1f1f1f);
-      color: #fff;
-      margin: 0;
-      padding: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+      color: #333;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
+      min-height: 100vh;
     }
-    .quiz-container {
-      background: #121212;
+    .container {
+      background: white;
       padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px #ff0;
-      width: 90%;
-      max-width: 600px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      max-width: 500px;
       text-align: center;
     }
     .question {
-      font-size: 1.5em;
+      font-size: 1.3em;
       margin-bottom: 20px;
-      color: #00ff00;
     }
-    .answers label {
-      display: block;
-      margin: 10px 0;
-      font-size: 1.1em;
-      cursor: pointer;
-    }
-    button {
-      background: #ff0;
-      color: #000;
-      padding: 15px 25px;
-      font-size: 1em;
-      font-weight: bold;
+    .btn {
+      display: inline-block;
+      background: #4CAF50;
+      color: white;
+      padding: 12px 20px;
+      margin: 10px 5px;
       border: none;
-      border-radius: 10px;
+      border-radius: 8px;
       cursor: pointer;
-      margin-top: 20px;
-      box-shadow: 0 0 10px #ff0;
+      font-size: 1em;
+      transition: background 0.3s;
     }
-    button:hover {
-      background: #ffd700;
+    .btn:hover {
+      background: #45a049;
     }
-    .progress-bar {
-      width: 100%;
-      background: #333;
-      border-radius: 10px;
-      overflow: hidden;
-      margin-bottom: 20px;
-      height: 20px;
-    }
-    .progress {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, #00ff00, #ff0);
-      transition: width 0.5s ease;
+    .hidden {
+      display: none;
     }
   </style>
 </head>
 <body>
 
-<div class="quiz-container">
-  <div class="progress-bar">
-    <div class="progress"></div>
+<div class="container">
+  <div id="step1">
+    <div class="question">
+      Você acredita que o principal propósito do homem na Terra é propagar a Palavra de Cristo?
+    </div>
+    <button class="btn" onclick="nextStep(2)">Sim, com certeza!</button>
+    <button class="btn" onclick="nextStep(2)">Estou buscando entender melhor</button>
   </div>
-  <div id="quiz">
-    <div class="question"></div>
-    <div class="answers"></div>
-    <button id="next">Próxima</button>
-  </div>
-</div>
 
-<audio id="pix-sound" src="https://cdn.pixabay.com/download/audio/2022/08/18/audio_aadac90c16.mp3?filename=money-cash-register-7035.mp3"></audio>
-
-<script>
-  const quizData = [
-    "Você sente que está sempre ocupado, mas produz pouco?",
-    "Você costuma procrastinar tarefas importantes?",
-    "Você sente que seu trabalho atrapalha sua vida familiar?",
-    "Você gostaria de ganhar mais dinheiro trabalhando menos horas?",
-    "Você tem dificuldade em manter o foco nas tarefas do dia?"
-  ];
-
-  const quiz = document.getElementById('quiz');
-  const questionEl = document.querySelector('.question');
-  const answersEl = document.querySelector('.answers');
-  const nextBtn = document.getElementById('next');
-  const progressEl = document.querySelector('.progress');
-  const pixSound = document.getElementById('pix-sound');
-
-  let currentQuiz = 0;
-
-  function loadQuiz() {
-    questionEl.innerText = quizData[currentQuiz];
-    answersEl.innerHTML = `
-      <label><input type="radio" name="answer" value="1"> Sim</label>
-      <label><input type="radio" name="answer" value="2"> Às vezes</label>
-      <label><input type="radio" name="answer" value="3"> Não</label>
-    `;
-    updateProgress();
-  }
-
-  function updateProgress() {
-    const progress = ((currentQuiz) / quizData.length) * 100;
-    progressEl.style.width = progress + "%";
-  }
-
-  loadQuiz();
-
-  nextBtn.addEventListener('click', () => {
-    const answer = document.querySelector('input[name="answer"]:checked');
-    if (!answer) {
-      alert('Responde essa porra, mermão!');
-      return;
-    }
-    currentQuiz++;
-    pixSound.play();  // Toca o som de PIX caindo!
-    if (currentQuiz < quizData.length) {
-      loadQuiz();
-    } else {
-      progressEl.style.width = "100%";
-      quiz.innerHTML = `
-        <h2>Parabéns (ou não)...</h2>
-        <p>De acordo com as suas respostas, você está PERDENDO TEMPO, DINHEIRO e QUALIDADE DE VIDA!</p>
-        <p>Mas calma… existe uma forma simples de mudar isso AGORA!</p>
-        <button onclick="location.href='https://teu-site.com/oferta'">Quero mudar de vida AGORA!</button>
-      `;
-    }
-  });
-</script>
-
-</body>
-</html>
+  <div id="step2" class="hidden">
+    <div class="question">
+      Você gostaria de ter um meio criativo e inspirador para compartilhar mensagens de f
