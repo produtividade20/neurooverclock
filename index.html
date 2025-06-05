@@ -28,17 +28,43 @@
     }
 
     h1 {
-      color: #2196f3; /* Azul céu */
-      margin-bottom: 30px;
+      color: #2196f3;
+      margin-bottom: 20px;
       font-size: 28px;
       font-weight: bold;
+    }
+
+    .progress-container {
+      margin-bottom: 20px;
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background-color: #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background-color: #4caf50;
+      width: 0%;
+      transition: width 0.4s ease;
+    }
+
+    .level {
+      margin: 10px 0;
+      font-weight: bold;
+      color: #444;
     }
 
     .question {
       margin-bottom: 30px;
       font-size: 20px;
       font-weight: bold;
-      color: #333333; /* Cinza escuro */
+      color: #333;
       padding: 15px;
       background-color: #f9f9f9;
       border-radius: 12px;
@@ -72,6 +98,14 @@
 
 <div class="container" id="quizContainer">
   <h1>Reserve seu lugar no Céu!</h1>
+
+  <div class="progress-container">
+    <div class="level" id="levelText">Nível: Povo</div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+  </div>
+
   <div class="question" id="questionText"></div>
   <div class="buttons">
     <button onclick="nextQuestion('Sim')">Sim</button>
@@ -89,17 +123,28 @@
     "VOCÊ QUER FAZER PARTE DE UM MOVIMENTO QUE ESPALHA AMOR, ESPERANÇA E FÉ ATRAVÉS DAS REDES SOCIAIS?"
   ];
 
+  const levels = ["Povo", "Crente", "Pastor", "Evangelista", "Profeta"];
+
   let currentQuestion = 0;
 
   const questionText = document.getElementById('questionText');
   const quizContainer = document.getElementById('quizContainer');
+  const progressFill = document.getElementById('progressFill');
+  const levelText = document.getElementById('levelText');
 
   function showQuestion(index) {
     questionText.textContent = questions[index];
+    updateProgress(index);
+  }
+
+  function updateProgress(index) {
+    const progressPercent = ((index) / questions.length) * 100;
+    progressFill.style.width = progressPercent + "%";
+    levelText.textContent = `Nível: ${levels[index] || levels[levels.length - 1]}`;
   }
 
   function nextQuestion(response) {
-    console.log(`Resposta: ${response}`);  // Aqui pode ser enviado para um backend ou armazenado
+    console.log(`Resposta: ${response}`);
     currentQuestion++;
     if (currentQuestion < questions.length) {
       quizContainer.style.opacity = '0';
@@ -111,8 +156,11 @@
       }, 500);
     } else {
       quizContainer.innerHTML = `
-        <h1>Parabéns!</h1>
-        <p>Você completou o quiz. Em breve entraremos em contato com novidades incríveis sobre as figurinhas gospel!</p>
+        <h1>Parabéns, Profeta!</h1>
+        <div style="margin-bottom: 20px;">
+          <strong>Você alcançou o nível mais alto do nosso quiz!</strong>
+        </div>
+        <p>Em breve entraremos em contato com novidades incríveis sobre as figurinhas gospel!</p>
       `;
     }
   }
