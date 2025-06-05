@@ -1,87 +1,120 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funil de Figurinhas Gospel</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #e0f7fa, #e8f5e9);
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            max-width: 600px;
-            margin: 50px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        h1 {
-            text-align: center;
-            color: #00796b;
-        }
-        .question {
-            margin-bottom: 25px;
-            padding: 15px;
-            background-color: #f1f8e9;
-            border-left: 5px solid #00796b;
-            border-radius: 10px;
-        }
-        button {
-            background-color: #00796b;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            margin-top: 10px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        button:hover {
-            background-color: #004d40;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Funil Gamificado Gospel</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #e8f5e9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: #fff;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    h1 {
+      color: #00796b;
+      margin-bottom: 20px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    button {
+      background-color: #00796b;
+      color: #fff;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Descubra o seu Propósito</h1>
-
-    <div class="question">
-        <p>1️⃣ Você acredita que foi chamado para propagar a Palavra de Cristo?</p>
-        <button>Sim</button>
-        <button>Não sei</button>
-    </div>
-
-    <div class="question">
-        <p>2️⃣ O quanto você sente que está cumprindo sua missão espiritual hoje?</p>
-        <button>Muito</button>
-        <button>Mais ou menos</button>
-        <button>Preciso melhorar</button>
-    </div>
-
-    <div class="question">
-        <p>3️⃣ Você gostaria de uma maneira criativa de compartilhar a mensagem de Deus?</p>
-        <button>Sim, claro!</button>
-        <button>Nunca pensei nisso</button>
-    </div>
-
-    <div class="question">
-        <p>4️⃣ Acredita que pequenas ações, como enviar figurinhas com mensagens bíblicas, podem transformar vidas?</p>
-        <button>Sim, com certeza</button>
-        <button>Tenho dúvidas</button>
-    </div>
-
-    <div class="question">
-        <p>5️⃣ Você quer fazer parte de um movimento que espalha amor, esperança e fé através das redes sociais?</p>
-        <button>Sim, quero!</button>
-        <button>Talvez</button>
-    </div>
+<div class="container" id="quizContainer">
+  <h1>Descubra o Seu Propósito</h1>
+  <div class="question" id="questionText"></div>
+  <div class="buttons">
+    <button onclick="nextQuestion('Sim')">Sim</button>
+    <button onclick="nextQuestion('Não')">Não</button>
+    <button onclick="nextQuestion('Talvez')">Talvez</button>
+  </div>
 </div>
+
+<script>
+  const questions = [
+    "Você acredita que foi chamado para propagar a Palavra de Cristo?",
+    "O quanto você sente que está cumprindo sua missão espiritual hoje?",
+    "Você gostaria de uma maneira criativa de compartilhar a mensagem de Deus?",
+    "Acredita que pequenas ações, como enviar figurinhas com mensagens bíblicas, podem transformar vidas?",
+    "Você quer fazer parte de um movimento que espalha amor, esperança e fé através das redes sociais?"
+  ];
+
+  let currentQuestion = 0;
+
+  const questionText = document.getElementById('questionText');
+  const quizContainer = document.getElementById('quizContainer');
+
+  function showQuestion(index) {
+    questionText.textContent = questions[index];
+  }
+
+  function nextQuestion(response) {
+    console.log(`Resposta: ${response}`);  // Aqui pode ser enviado para um backend ou armazenado
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+      quizContainer.style.opacity = '0';
+      quizContainer.style.transform = 'translateY(20px)';
+      setTimeout(() => {
+        showQuestion(currentQuestion);
+        quizContainer.style.opacity = '1';
+        quizContainer.style.transform = 'translateY(0)';
+      }, 500);
+    } else {
+      quizContainer.innerHTML = `
+        <h1>Parabéns!</h1>
+        <p>Você completou o quiz. Em breve entraremos em contato com novidades incríveis sobre as figurinhas gospel!</p>
+      `;
+    }
+  }
+
+  // Inicializa o quiz
+  showQuestion(currentQuestion);
+</script>
 
 </body>
 </html>
